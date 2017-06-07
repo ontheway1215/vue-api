@@ -1,8 +1,7 @@
 <template>
-  <ul class="hello">
-    <li v-for="item in message">
-      <div>{{item.type}}</div>
-      <div>{{item.description}}</div>
+  <ul class="img-box">
+    <li v-for="item in emojis" class="">
+      <img :src="item.main" alt="">
     </li>
   </ul>
 </template>
@@ -13,15 +12,15 @@ export default {
   data () {
     return {
       msg: 'Welcome to Your Vue.js App',
-      message: null
+      emojis: []
     }
   },
   created () {
     let id = window.location.pathname
     console.log(id)
-    this.$http.get('http://localhost:8081' + id).then((response) => {
+    this.$http.get('http://localhost:3000/trending').then((response) => {
       response = response.data
-      this.message = response
+      this.emojis = response.emojis
     })
   }
 }
@@ -43,7 +42,11 @@ li {
   margin: 0 10px;
 }
 
-a {
-  color: #42b983;
+.img-box li {
+  margin:5px;
 }
+  .img-box li img {
+    width: 200px;
+    height: 200px;
+  }
 </style>
