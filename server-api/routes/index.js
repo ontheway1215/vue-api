@@ -45,6 +45,7 @@ router.all('/search/:id/:page', function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.send(data);
   }).catch(function (err) {
+    console.log(err);
   });
 });
 
